@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane fx:id="mainRoot" prefWidth="800.0" prefHeight="520.0"
+            style="-fx-background-color: #000000;"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.javafx.ELineController">
+
+    <!--VBox principal ocupa a tela inteira por cima do canvas -->
+    <VBox
+           style="-fx-background-color: transparent;"
+           AnchorPane.topAnchor="0"
+           AnchorPane.bottomAnchor="0"
+           AnchorPane.leftAnchor="0"
+           AnchorPane.rightAnchor="0">
+
+        <!-- TOPBAR — barra superior com 3 elementos lado a lado -->
+        <HBox alignment="CENTER_LEFT"
+              spacing="20"
+              style="-fx-padding: 16 24 16 24;
+                     -fx-border-color: rgba(0,229,255,0.15);
+                     -fx-border-width: 0 0 1 0;
+                     -fx-background-color: #000000;">
+
+            <!-- BOTÃO VOLTAR -->
+            <Button text="← Menu"
+                    onAction="#voltarMenu"
+                    fx:id="voltarELine"
+                    style="-fx-background-color: #000000;
+                            -fx-border-color: rgba(255,255,255,0.15);
+                            -fx-border-radius: 6;
+                            -fx-background-radius: 6;
+                            -fx-text-fill: rgba(255,255,255,0.5);
+                            -fx-font-size: 12px;
+                            -fx-cursor: hand;
+                            -fx-padding: 5 12 5 12;"/>
+
+            <!-- TÍTULO CENTRAL — HBox.hgrow="ALWAYS" empurra o título para o centro -->
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                <Label text="E-LINE"
+                       style="-fx-font-size: 16px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #00e5ff;
+                              -fx-letter-spacing: 2;"/>
+
+                <Label text="ETHERNET VIRTUAL PRIVATE LINE · EVPL"
+                       style="-fx-font-size: 10px;
+                               -fx-text-fill: #25a7b6;"/>
+
+            </VBox>
+
+            <Label text="PONTO A PONTO"
+                   style="-fx-font-size: 10px;
+                          -fx-text-fill: #25a7b6;
+                          -fx-border-color: rgba(0,259,255,0.3);
+                          -fx-border-radius: 4;
+                          -fx-background-radius: 4;
+                          -fx-padding: 4 10 4 10;"/>
+        </HBox>
+
+        <!-- VBox CENTRAL — ocupa o espaço restante e centraliza o conteúdo -->
+        <VBox alignment="CENTER"
+              spacing="40"
+              VBox.vgrow="ALWAYS"
+              style="-fx-background-color: #000000;">
+
+            <HBox alignment="CENTER" spacing="0" maxWidth="700">
+                <!-- NÓ EMPRESA -->
+                <VBox alignment="CENTER" spacing="10"
+                      translateY="25"
+                      translateX="-10"
+                      style="-fx-min-width: 140px;
+                             -fx-max-width: 140px;">
+
+                    <!-- Container StackPane para isolar o emoji e evitar tremores -->
+                    <StackPane
+                            cache="true"
+                            cacheHint="SPEED"
+                            prefWidth="76" prefHeight="76"
+                            minWidth="76" minHeight="76"
+                            maxWidth="76" maxHeight="76"
+                            style="-fx-background-color: rgba(0,229,255,0.06);
+                                   -fx-border-color: rgba(0,229,255,0.3);
+                                   -fx-border-radius: 18;
+                                   -fx-background-radius: 18;">
+                        <Label text="🏢" style="-fx-font-size: 36px; -fx-alignment: center; -fx-padding: 0;"/>
+                    </StackPane>
+
+                    <Label text="Empresa"
+                           style="-fx-font-size: 13px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: white;"/>
+
+
+                    <Label text="UNI · 10 Gbps"
+                           style="-fx-font-size: 10px;
+                                  -fx-text-fill: rgba(255, 255, 255, 0.4);"/>
+
+                </VBox>
+
+                <!-- LINK 1 — empresa até provedor -->
+                <VBox alignment="CENTER" spacing="10"
+                      translateX="-20"
+                      HBox.hgrow="ALWAYS"
+                      style="-fx-padding: 0 8 0 8;">
+
+                    <Label text="CIRCUITO DEDICADO"
+                           style="-fx-font-size: 10px; -fx-text-fill: #00e5ff;"/>
+
+                    <!-- LINHA ANIMADA LINK 1 — AnchorPane permite sobrepor o ponto animado -->
+                    <AnchorPane fx:id="link1"
+                                prefHeight="8"
+                                maxHeight="Infinity"
+                                VBox.vgrow="NEVER">
+
+                    <!-- linha horizontal colorida -->
+                    <Region prefHeight="3"
+                            prefWidth="150"
+                            style="-fx-background-color: rgba(0,229,255,0.3);"
+                                  AnchorPane.leftAnchor="0"
+                                  AnchorPane.rightAnchor="0"
+                                  AnchorPane.topAnchor="6"/>
+
+                    </AnchorPane>
+
+                    <Label text="banda garantida"
+                           style="-fx-font-size: 10px;
+                                  -fx-text-fill: #f0f8ff;"/>
+
+                </VBox>
+
+                <!-- NÓ PROVEDOR -->
+                <VBox alignment="CENTER" spacing="10"
+                      translateY="25"
+                      translateX="-20"
+                      style="-fx-min-width: 140px; -fx-max-width: 140px;">
+
+                    <!-- Container StackPane para isolar o emoji do Provedor -->
+                    <StackPane
+                            cache="true"
+                            cacheHint="SPEED"
+                            prefWidth="76" prefHeight="76"
+                            minWidth="76" minHeight="76"
+                            maxWidth="76" maxHeight="76"
+                            style="-fx-background-color: rgba(0,255,180,0.06);
+                                    -fx-border-color: rgba(0,255,180,0.3);
+                                    -fx-border-radius: 18;
+                                    -fx-background-radius: 18;">
+
+                        <Label text="📡" style="-fx-font-size: 36px; -fx-alignment: center;"/>
+
+                    </StackPane>
+
+                    <Label text="Provedor"
+                           style="-fx-font-size: 13px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: white;"/>
+
+                    <Label text="Metro Ethernet"
+                           style="-fx-font-size: 10px;
+                                  -fx-text-fill: rgba(255,255,255,0.4);"/>
+
+                </VBox>
+
+                <!-- LINK 2 — provedor até nuvem -->
+                <VBox alignment="CENTER" spacing="10"
+                      translateX="-20"
+                      HBox.hgrow="ALWAYS"
+                      style="-fx-padding: 0 8 0 8;">
+
+                    <Label text="SLA GARANTIDO"
+                           style="-fx-font-size: 10px; -fx-text-fill: #00e5ff;"/>
+
+                    <!-- LINHA ANIMADA LINK 2 -->
+                    <AnchorPane fx:id="link2"
+                                prefHeight="8"
+                                VBox.vgrow="NEVER">
+
+                    <!-- linha horizontal colorida -->
+                        <Region prefHeight="3"
+                                prefWidth="150"
+                                style="-fx-background-color: rgba(0,229,255,0.3);"
+                                AnchorPane.leftAnchor="0"
+                                AnchorPane.rightAnchor="0"
+                                AnchorPane.topAnchor="6"/>
+
+                    </AnchorPane>
+
+                    <Label text="latência previsível"
+                           style="-fx-font-size: 10px;
+                                  -fx-text-fill:#f0f8ff;"/>
+
+                </VBox>
+
+                <!-- NÓ NUVEM -->
+                <VBox alignment="CENTER" spacing="10"
+                      translateY="25"
+                      translateX="-10"
+                      style="-fx-min-width: 140px; -fx-max-width: 140px;">
+
+                    <!-- Container StackPane para isolar o emoji do Provedor -->
+                    <StackPane
+                            cache="true"
+                            cacheHint="SPEED"
+                            prefWidth="76" prefHeight="76"
+                            minWidth="76" minHeight="76"
+                            maxWidth="76" maxHeight="76"
+                            style="-fx-background-color: rgba(0,255,180,0.06);
+                                   -fx-border-color: rgba(0,255,180,0.3);
+                                   -fx-border-radius: 18;
+                                   -fx-background-radius: 18;">
+
+                        <Label text="☁" style="-fx-font-size: 36px; -fx-alignment: center;"/>
+
+                    </StackPane>
+
+                    <Label text="Nuvem"
+                           style="-fx-font-size: 13px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: white;"/>
+
+                    <Label text="UNI · Banco de Dados"
+                           style="-fx-font-size: 10px; -fx-text-fill: rgba(255,255,255,0.4);"/>
+
+                </VBox>
+
+            </HBox>
+
+            <!-- CAIXA DE DESCRIÇÃO -->
+            <VBox alignment="CENTER"
+                  style="-fx-background-color: rgba(0,229,255,0.04);
+                         -fx-border-color: rgba(0,229,255,0.12);
+                         -fx-border-radius: 10;
+                         -fx-background-radius: 10;
+                         -fx-padding: 16 24 16 24;
+                         -fx-max-width: 580px;">
+
+                    <Label text="A empresa acessa seu banco de dados crítico na nuvem via circuito dedicado E-Line."
+                       wrapText="true"
+                       style="-fx-font-size: 12px;
+                              -fx-text-fill: rgba(255,255,255,0.45);
+                              -fx-text-alignment: center;"/>
+
+                <Label text="Diferente de uma VPN pela internet, o E-Line garante largura de banda fixa e latência ultrabaixa previsível — como se a nuvem estivesse no andar de baixo."
+                       wrapText="true"
+                       style="-fx-font-size: 12px;
+                              -fx-text-fill: rgba(255,255,255,0.45);
+                              -fx-text-alignment: center;
+                              -fx-padding: 8 0 0 0;"/>
+
+            </VBox>
+
+        </VBox>
+    </VBox>
+
+    <Canvas fx:id="animCanvas"
+            width="800" height="520"
+            mouseTransparent="true"
+            AnchorPane.topAnchor="0"
+            AnchorPane.leftAnchor="0"/>
+
+</AnchorPane>
